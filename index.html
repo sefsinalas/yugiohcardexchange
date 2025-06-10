@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yu-Gi-Oh Card Exchange</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <script type="module" src="app.js" defer></script>
+</head>
+<body>
+  <ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Yu-Gi-Oh Card Exchange</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <section id="auth">
+        <h2>Register / Login</h2>
+        <ion-item>
+          <ion-input id="email" type="email" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input id="password" type="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <ion-button id="registerBtn">Register</ion-button>
+        <ion-button id="loginBtn">Login</ion-button>
+        <ion-button id="logoutBtn" style="display:none;">Logout</ion-button>
+      </section>
+
+      <section id="account" style="display:none;">
+        <h2>My Account</h2>
+        <ion-item>
+          <ion-input id="phone" type="text" placeholder="Phone number"></ion-input>
+        </ion-item>
+        <input id="profilePic" type="file" accept="image/*" />
+        <ion-button id="saveAccount">Save Account</ion-button>
+      </section>
+
+      <section id="sell" style="display:none;">
+        <h2>Sell Card</h2>
+        <ion-item>
+          <ion-input id="title" type="text" placeholder="Title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input id="price" type="number" placeholder="Price"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea id="description" placeholder="Description"></ion-textarea>
+        </ion-item>
+        <input id="photos" type="file" multiple accept="image/*" />
+        <ion-button id="createPost">Create Post</ion-button>
+      </section>
+
+      <section id="posts">
+        <h2>Posts</h2>
+        <ion-select id="sort" interface="popover" value="date">
+          <ion-select-option value="date">Latest</ion-select-option>
+          <ion-select-option value="low">Low Price</ion-select-option>
+          <ion-select-option value="high">High Price</ion-select-option>
+        </ion-select>
+        <div id="postList"></div>
+      </section>
+    </ion-content>
+  </ion-app>
+</body>
+</html>
