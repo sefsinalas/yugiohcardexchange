@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; }
+section { margin-bottom: 20px; }
+.post { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+.post img { max-width: 100px; display:block; }
