@@ -10,4 +10,7 @@ This is a very small prototype web application that demonstrates how to exchange
 - Contact sellers via a WhatsApp link with a predefined message
 - Ionic UI components loaded from a CDN
 
-All data is stored in Firebase Authentication, Firestore and Storage. Replace the Firebase config in `app.js` with your own project details. The UI relies on Ionic's CDN so you need an internet connection when opening `index.html` in a web browser.
+All data is stored in Firebase Authentication, Firestore and Storage.
+Copy `.env.example` to `.env` and fill in your Firebase credentials.
+The application loads these values from the environment at runtime.
+The UI relies on Ionic's CDN so you need an internet connection when opening `index.html` in a web browser.
