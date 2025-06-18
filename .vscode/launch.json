@@ -3,10 +3,10 @@
     "configurations": [
         {
             "name": "Run Local Server",
-            "type": "python",
+            "type": "node",
             "request": "launch",
-            "module": "http.server",
-            "args": ["8000"],
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["start"],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal"
         }
