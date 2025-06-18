@@ -14,3 +14,14 @@ All data is stored in Appwrite Authentication, Databases and Storage.
 Copy `.env.example` to `.env` and fill in your Appwrite credentials.
 The application loads these values from the environment at runtime.
 The UI relies on Ionic's CDN so you need an internet connection when opening `index.html` in a web browser.
+
+## Local Development
+
+Install dependencies and start a local server with npm:
+
+```bash
+npm install
+npm start
+```
+
+This serves the project at [http://localhost:8000](http://localhost:8000).
