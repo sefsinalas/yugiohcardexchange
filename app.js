@@ -1,4 +1,4 @@
-import { Client, Account, Databases, Storage, ID, Query } from 'https://cdn.jsdelivr.net/npm/appwrite@13.0.1/+esm';
+import { Client, Account, Databases, Storage, ID, Query } from 'https://cdn.jsdelivr.net/npm/appwrite@18.1.1/+esm';
 import dotenv from 'https://cdn.jsdelivr.net/npm/dotenv@16.3.1/+esm';
 
 dotenv.config();
