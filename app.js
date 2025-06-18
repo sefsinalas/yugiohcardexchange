@@ -12,7 +12,6 @@ const databases = new Databases(client);
 const storage = new Storage(client);
 
 const DB_ID = process.env.APPWRITE_DATABASE_ID;
-const USERS_COLLECTION = process.env.APPWRITE_USERS_COLLECTION_ID;
 const POSTS_COLLECTION = process.env.APPWRITE_POSTS_COLLECTION_ID;
 const BUCKET_ID = process.env.APPWRITE_BUCKET_ID;
 
@@ -60,12 +59,12 @@ logoutBtn.addEventListener('click', async () => {
 
 async function checkUser() {
   try {
-    const user = await account.get();
+    await account.get();
     logoutBtn.style.display = 'inline';
     accountSection.style.display = 'block';
     sellSection.style.display = 'block';
-    const docSnap = await databases.getDocument(DB_ID, USERS_COLLECTION, user.$id);
-    phoneEl.value = docSnap.phone || '';
+    const prefs = await account.getPrefs();
+    phoneEl.value = prefs.phone || '';
   } catch (e) {
     logoutBtn.style.display = 'none';
     accountSection.style.display = 'none';
@@ -86,17 +85,10 @@ saveAccountBtn.addEventListener('click', async () => {
       await storage.createFile(BUCKET_ID, fileId, file);
       photoURL = storage.getFileView(BUCKET_ID, fileId);
     }
-    try {
-      await databases.updateDocument(DB_ID, USERS_COLLECTION, user.$id, {
-        phone: phoneEl.value,
-        photoURL
-      });
-    } catch (_) {
-      await databases.createDocument(DB_ID, USERS_COLLECTION, user.$id, {
-        phone: phoneEl.value,
-        photoURL
-      });
-    }
+    await account.updatePrefs({
+      phone: phoneEl.value,
+      photoURL
+    });
     alert('Account saved');
   } catch (e) {
     alert(e);
@@ -119,6 +111,7 @@ createPostBtn.addEventListener('click', async () => {
       price: Number(priceEl.value),
       description: descEl.value,
       images: urls,
+      phone: phoneEl.value,
       status: 'open',
       created: Date.now()
     });
@@ -158,11 +151,7 @@ async function loadPosts() {
         img.src = url;
         div.appendChild(img);
       }
-      let phone = '';
-      try {
-        const userDoc = await databases.getDocument(DB_ID, USERS_COLLECTION, data.uid);
-        phone = userDoc.phone || '';
-      } catch (_) {}
+      const phone = data.phone || '';
       const waBtn = document.createElement('a');
       waBtn.href = `https://wa.me/${phone}?text=I'm%20interested%20in%20your%20card%20${encodeURIComponent(data.title)}`;
       waBtn.target = '_blank';
