@@ -1,19 +1,17 @@
 import { Client, Account, Databases, Storage, ID, Query } from 'https://cdn.jsdelivr.net/npm/appwrite@18.1.1/+esm';
-import dotenv from 'https://cdn.jsdelivr.net/npm/dotenv@16.3.1/+esm';
-
-dotenv.config();
+import env from './env.js';
 
 const client = new Client()
-  .setEndpoint(process.env.APPWRITE_ENDPOINT)
-  .setProject(process.env.APPWRITE_PROJECT_ID);
+  .setEndpoint(env.APPWRITE_ENDPOINT)
+  .setProject(env.APPWRITE_PROJECT_ID);
 
 const account = new Account(client);
 const databases = new Databases(client);
 const storage = new Storage(client);
 
-const DB_ID = process.env.APPWRITE_DATABASE_ID;
-const POSTS_COLLECTION = process.env.APPWRITE_POSTS_COLLECTION_ID;
-const BUCKET_ID = process.env.APPWRITE_BUCKET_ID;
+const DB_ID = env.APPWRITE_DATABASE_ID;
+const POSTS_COLLECTION = env.APPWRITE_POSTS_COLLECTION_ID;
+const BUCKET_ID = env.APPWRITE_BUCKET_ID;
 
 const emailEl = document.getElementById('email');
 const passwordEl = document.getElementById('password');
