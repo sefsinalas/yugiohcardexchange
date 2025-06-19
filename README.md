@@ -11,8 +11,9 @@ This is a very small prototype web application that demonstrates how to exchange
 - Ionic UI components loaded from a CDN
 
 All data is stored in Appwrite Authentication, Databases and Storage.
-Copy `env.example.js` to `env.js` and fill in your Appwrite credentials.
-The application imports these values from `env.js` at runtime.
+Copy `.env.example` to `.env` and fill in your Appwrite credentials.
+When `npm start` runs, a small script uses these values to generate
+`env.js` which the application imports at runtime.
 The UI relies on Ionic's CDN so you need an internet connection when opening `index.html` in a web browser.
 
 ## Local Development
