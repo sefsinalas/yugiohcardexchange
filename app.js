@@ -140,35 +140,42 @@ async function loadPosts() {
     const snap = await databases.listDocuments(DB_ID, POSTS_COLLECTION, queries);
     for (const docSnap of snap.documents) {
       const data = docSnap;
-      const div = document.createElement('div');
-      div.className = 'post';
-      div.innerHTML = `<h3>${data.title}</h3>` +
-        `<p>Price: $${data.price}</p>` +
-        `<p>${data.description}</p>`;
+      const card = document.createElement('ion-card');
+      card.innerHTML = `
+        <ion-card-header>
+          <ion-card-title>${data.title}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Price: $${data.price}</p>
+          <p>${data.description}</p>
+        </ion-card-content>
+      `;
       for (const url of data.images) {
         const img = document.createElement('img');
         img.src = url;
-        div.appendChild(img);
+        img.style.maxWidth = '100%';
+        card.appendChild(img);
       }
       const phone = data.phone || '';
-      const waBtn = document.createElement('a');
+      const waBtn = document.createElement('ion-button');
       waBtn.href = `https://wa.me/${phone}?text=I'm%20interested%20in%20your%20card%20${encodeURIComponent(data.title)}`;
       waBtn.target = '_blank';
-      waBtn.textContent = 'Contact via WhatsApp';
-      div.appendChild(waBtn);
+      waBtn.innerText = 'Contact via WhatsApp';
+      waBtn.fill = 'outline';
+      card.appendChild(waBtn);
       try {
         const current = await account.get();
         if (current.$id === data.uid) {
-          const closeBtn = document.createElement('button');
-          closeBtn.textContent = 'Close';
+          const closeBtn = document.createElement('ion-button');
+          closeBtn.innerText = 'Close';
           closeBtn.addEventListener('click', async () => {
             await databases.updateDocument(DB_ID, POSTS_COLLECTION, docSnap.$id, { status: 'closed' });
             loadPosts();
           });
-          div.appendChild(closeBtn);
+          card.appendChild(closeBtn);
         }
       } catch (_) {}
-      postList.appendChild(div);
+      postList.appendChild(card);
     }
   } catch (e) {
     console.error(e);
