@@ -16,6 +16,7 @@
     "http-server": "^14.1.1"
   },
   "dependencies": {
+    "@ionic/core": "^8.6.2",
     "appwrite": "^18.1.1",
     "dotenv": "^16.5.0"
   }

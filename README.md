@@ -8,13 +8,13 @@ This is a very small prototype web application that demonstrates how to exchange
 - Close your own postings
 - Browse open postings sorted by date, low price or high price
 - Contact sellers via a WhatsApp link with a predefined message
-- Ionic UI components loaded from a CDN
+- Ionic UI components included via the `@ionic/core` package
 
 All data is stored in Appwrite Authentication, Databases and Storage.
 Copy `.env.example` to `.env` and fill in your Appwrite credentials.
 When `npm start` runs, a small script uses these values to generate
 `env.js` which the application imports at runtime.
-The UI relies on Ionic's CDN so you need an internet connection when opening `index.html` in a web browser.
+The UI now uses Ionic locally from `node_modules`, so no Internet connection is required to load the framework.
 
 ## Local Development
 
