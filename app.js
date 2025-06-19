@@ -1,5 +1,5 @@
 // Use Appwrite SDK installed via npm to avoid CDN-related issues.
-import { Client, Account, Databases, Storage, ID, Query } from 'cdn.jsdelivr.net/npm/appwrite@18.1.1';
+import { Client, Account, Databases, Storage, ID, Query } from 'https://cdn.jsdelivr.net/npm/appwrite@18.1.1/+esm';
 import env from './env.js';
 
 const client = new Client()
